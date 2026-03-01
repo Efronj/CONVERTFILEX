@@ -68,8 +68,8 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile menu button */}
-                    <div className="flex items-center gap-2" style={{ display: 'flex' }} >
-                        <div style={{ display: 'flex' }} className="md-hidden-block">
+                    <div className="flex items-center gap-2 md-hidden-block" >
+                        <div style={{ display: 'flex' }}>
                             <button onClick={toggleTheme} className="icon-btn">
                                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                             </button>

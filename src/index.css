@@ -140,6 +140,12 @@ button {
   gap: 0.5rem;
 }
 
+@media (min-width: 768px) {
+  .md-hidden-block {
+    display: none !important;
+  }
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
