@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { Mail, Lock, ArrowRight, FileText } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Since this is a demo, we'll just redirect to the app
+        navigate('/');
+    };
 
     return (
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
@@ -32,7 +40,7 @@ const Login = () => {
                     </p>
                 </div>
 
-                <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} onSubmit={(e) => e.preventDefault()}>
+                <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} onSubmit={handleSubmit}>
                     {!isLogin && (
                         <div>
                             <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '0.5rem' }}>Full Name</label>
