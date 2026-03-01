@@ -8,7 +8,7 @@ const Support = () => {
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Navbar />
 
-            <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <main className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, padding: '2rem 1rem' }}>
                 <div className="glass-lg" style={{ width: '100%', maxWidth: '36rem', padding: '3rem 2rem', borderRadius: '1.5rem', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
                     <div className="top-gradient-border"></div>
 
@@ -25,8 +25,8 @@ const Support = () => {
 
                     <div style={{ padding: '2rem', borderRadius: '1rem', background: 'rgba(15, 23, 42, 0.02)', border: '1px solid var(--border)' }} className="dark:bg-slate-800/30">
                         <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>Direct Email Support</h3>
-                        <p style={{ color: 'rgba(15, 23, 42, 0.6)', marginBottom: '1.5rem' }} className="dark:text-slate-400">
-                            The fastest way to reach us. Any problem write it down and it will come straight to our support inbox.
+                        <p style={{ color: 'rgba(15, 23, 42, 0.6)', marginBottom: '1.5rem', lineHeight: '1.5' }} className="dark:text-slate-400">
+                            The fastest way to reach us. If you have any problems or feedback, please write to us and it will come straight to our support inbox.
                         </p>
 
                         <a
