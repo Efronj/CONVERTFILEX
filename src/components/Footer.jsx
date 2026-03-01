@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className="footer-links">
                     <a href="#" className="footer-muted" style={{ transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--primary-500)'} onMouseOut={e => e.target.style.color = ''}>Privacy</a>
                     <a href="#" className="footer-muted" style={{ transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--primary-500)'} onMouseOut={e => e.target.style.color = ''}>Terms</a>
-                    <a href="#" className="footer-muted" style={{ transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--primary-500)'} onMouseOut={e => e.target.style.color = ''}>Support</a>
+                    <a href="/support" className="footer-muted" style={{ transition: 'color 0.2s' }} onMouseOver={e => e.target.style.color = 'var(--primary-500)'} onMouseOut={e => e.target.style.color = ''}>Support</a>
                 </div>
 
                 <div className="footer-badge">

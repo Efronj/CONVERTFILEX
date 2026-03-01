@@ -4,8 +4,8 @@ import { useDropzone } from 'react-dropzone';
 
 const converters = [
     { id: 'image-to-pdf', title: 'Image to PDF', icon: <FileImage size={20} /> },
-    { id: 'camera-to-pdf', title: 'Live Camera to PDF', icon: <Camera size={20} /> },
     { id: 'image-to-doc', title: 'Image to DOC', icon: <FileImage size={20} /> },
+    { id: 'camera-to-pdf', title: 'Live Camera to PDF', icon: <Camera size={20} /> },
     { id: 'jpg-to-png', title: 'JPG to PNG', icon: <FileImage size={20} /> },
     { id: 'pdf-to-image', title: 'PDF to Image', icon: <FileText size={20} /> },
     { id: 'pdf-to-doc', title: 'PDF to Word', icon: <FileText size={20} /> },

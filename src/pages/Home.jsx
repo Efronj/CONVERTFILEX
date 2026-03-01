@@ -23,6 +23,32 @@ const Home = () => {
                 <div id="converter" style={{ width: '100%', marginTop: '4rem' }}>
                     <ConverterDashboard />
                 </div>
+
+                {/* Features Section */}
+                <div id="features" style={{ width: '100%', marginTop: '8rem', marginBottom: '4rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <h2 style={{ fontSize: '2.25rem', fontWeight: 800, marginBottom: '1rem' }} className="gradient-text">Why Choose ConvertX?</h2>
+                        <p style={{ color: 'rgba(15, 23, 42, 0.6)', maxWidth: '40rem', margin: '0 auto', fontSize: '1.125rem' }} className="dark:text-slate-300">Experience the next generation of file conversion with military-grade security and lightning-fast processing speeds.</p>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                        <div className="glass-lg" style={{ padding: '2rem', borderRadius: '1.5rem', textAlign: 'center' }}>
+                            <div style={{ width: '4rem', height: '4rem', borderRadius: '1rem', background: 'var(--primary-100)', color: 'var(--primary-600)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.5rem' }} className="dark:bg-sky-900/50 dark:text-sky-300">⚡</div>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>Lightning Fast</h3>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.6)' }} className="dark:text-slate-300">Convert hundreds of files simultaneously with our high-performance infrastructure.</p>
+                        </div>
+                        <div className="glass-lg" style={{ padding: '2rem', borderRadius: '1.5rem', textAlign: 'center' }}>
+                            <div style={{ width: '4rem', height: '4rem', borderRadius: '1rem', background: 'var(--primary-100)', color: 'var(--primary-600)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.5rem' }} className="dark:bg-sky-900/50 dark:text-sky-300">🔒</div>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>Secure & Private</h3>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.6)' }} className="dark:text-slate-300">All uploaded sets of files are instantly deleted from our servers after conversion.</p>
+                        </div>
+                        <div className="glass-lg" style={{ padding: '2rem', borderRadius: '1.5rem', textAlign: 'center' }}>
+                            <div style={{ width: '4rem', height: '4rem', borderRadius: '1rem', background: 'var(--primary-100)', color: 'var(--primary-600)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.5rem' }} className="dark:bg-sky-900/50 dark:text-sky-300">📱</div>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>Live Camera</h3>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.6)' }} className="dark:text-slate-300">Capture documents directly using your device's webcam and turn them into PDFs.</p>
+                        </div>
+                    </div>
+                </div>
             </main>
 
             <Footer />
