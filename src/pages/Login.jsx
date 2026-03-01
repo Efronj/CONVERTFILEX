@@ -39,6 +39,8 @@ const Login = () => {
                             <div style={{ position: 'relative' }}>
                                 <input
                                     type="text"
+                                    name="name"
+                                    autoComplete="name"
                                     placeholder="John Doe"
                                     style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', borderRadius: '0.75rem', border: '1px solid var(--border)', background: 'var(--card)', color: 'var(--foreground)', outline: 'none' }}
                                 />
@@ -52,6 +54,8 @@ const Login = () => {
                             <Mail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'rgba(15, 23, 42, 0.4)' }} />
                             <input
                                 type="email"
+                                name="email"
+                                autoComplete="username email"
                                 placeholder="you@example.com"
                                 style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', borderRadius: '0.75rem', border: '1px solid var(--border)', background: 'var(--card)', color: 'var(--foreground)', outline: 'none' }}
                             />
@@ -67,6 +71,8 @@ const Login = () => {
                             <Lock size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'rgba(15, 23, 42, 0.4)' }} />
                             <input
                                 type="password"
+                                name="password"
+                                autoComplete={isLogin ? "current-password" : "new-password"}
                                 placeholder="••••••••"
                                 style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', borderRadius: '0.75rem', border: '1px solid var(--border)', background: 'var(--card)', color: 'var(--foreground)', outline: 'none' }}
                             />
