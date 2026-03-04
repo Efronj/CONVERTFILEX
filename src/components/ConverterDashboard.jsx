@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { UploadCloud, FileImage, FileText, CheckCircle2, ArrowRightLeft, XCircle, Settings, Download, Camera } from 'lucide-react';
+import { UploadCloud, FileImage, FileText, CheckCircle2, ArrowRightLeft, XCircle, Settings, Download, Camera, Video, Music } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
+import JSZip from 'jszip';
 
 const converters = [
     { id: 'image-to-pdf', title: 'Image to PDF', icon: <FileImage size={20} /> },
     { id: 'image-to-doc', title: 'Image to DOC', icon: <FileImage size={20} /> },
     { id: 'camera-to-pdf', title: 'Live Camera to PDF', icon: <Camera size={20} /> },
     { id: 'jpg-to-png', title: 'JPG to PNG', icon: <FileImage size={20} /> },
+    { id: 'webp-to-jpg', title: 'WEBP to JPG', icon: <FileImage size={20} /> },
+    { id: 'jpg-to-webp', title: 'JPG to WEBP', icon: <FileImage size={20} /> },
+    { id: 'mp4-to-mp3', title: 'Video to MP3', icon: <Music size={20} /> },
     { id: 'pdf-to-image', title: 'PDF to Image', icon: <FileText size={20} /> },
     { id: 'pdf-to-doc', title: 'PDF to Word', icon: <FileText size={20} /> },
     { id: 'doc-to-jpg', title: 'Word to JPG', icon: <FileText size={20} /> },
@@ -27,7 +31,7 @@ const ConverterDashboard = () => {
 
     const startCamera = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
             }
@@ -90,9 +94,27 @@ const ConverterDashboard = () => {
         }, 100);
     };
 
-    const handleDownload = () => {
-        const blob = new Blob(['Dummy converted file downloaded successfully from ConvertX!'], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
+    const handleDownload = async () => {
+        const zip = new JSZip();
+        zip.file("readme.txt", "Dummy converted files downloaded successfully from ConvertX!");
+
+        // Add dummy converted files based on original files
+        files.forEach((file) => {
+            let fakeExt = '.txt';
+            if (activeConverter.includes('-pdf')) fakeExt = '.pdf';
+            else if (activeConverter.includes('-png')) fakeExt = '.png';
+            else if (activeConverter.includes('-jpg')) fakeExt = '.jpg';
+            else if (activeConverter.includes('-webp')) fakeExt = '.webp';
+            else if (activeConverter.includes('-doc')) fakeExt = '.docx';
+            else if (activeConverter.includes('-mp3')) fakeExt = '.mp3';
+
+            const newName = file.name.replace(/\.[^/.]+$/, "") + "-converted" + fakeExt;
+            zip.file(newName, "Dummy converted content for " + file.name);
+        });
+
+        const content = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(content);
+
         const a = document.createElement('a');
         a.href = url;
         a.download = 'convertx_files.zip';
