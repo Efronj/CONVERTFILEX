@@ -28,13 +28,12 @@ const ConverterDashboard = () => {
     const [isCameraActive, setIsCameraActive] = useState(false);
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
+    const streamRef = useRef(null);
 
     const startCamera = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            if (videoRef.current) {
-                videoRef.current.srcObject = stream;
-            }
+            streamRef.current = stream;
             setIsCameraActive(true);
         } catch (err) {
             console.error("Error accessing camera:", err);
@@ -42,10 +41,19 @@ const ConverterDashboard = () => {
         }
     };
 
+    useEffect(() => {
+        if (isCameraActive && videoRef.current && streamRef.current) {
+            videoRef.current.srcObject = streamRef.current;
+        }
+    }, [isCameraActive]);
+
     const stopCamera = () => {
-        if (videoRef.current && videoRef.current.srcObject) {
-            const tracks = videoRef.current.srcObject.getTracks();
+        if (streamRef.current) {
+            const tracks = streamRef.current.getTracks();
             tracks.forEach(track => track.stop());
+            streamRef.current = null;
+        }
+        if (videoRef.current) {
             videoRef.current.srcObject = null;
         }
         setIsCameraActive(false);
