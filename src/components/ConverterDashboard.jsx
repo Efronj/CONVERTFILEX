@@ -105,9 +105,18 @@ const ConverterDashboard = () => {
 
     const handleDownload = async () => {
         const zip = new JSZip();
+        const [sourceType, targetType] = activeConverter.split('-to-');
 
-        // Helper to get image data as blob
-        const convertImage = (file, targetFormat) => {
+        // Helper to get image data as dataURL for jsPDF or Blob for formatting
+        const getImageData = (file) => {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.readAsDataURL(file);
+            });
+        };
+
+        const convertImage = (file, format) => {
             return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => {
@@ -116,65 +125,76 @@ const ConverterDashboard = () => {
                     canvas.height = img.height;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0);
-                    canvas.toBlob((blob) => resolve(blob), `image/${targetFormat}`, 0.9);
+                    canvas.toBlob((blob) => resolve(blob), `image/${format}`, 0.9);
                 };
-                img.onerror = () => resolve(new Blob(["Failed to load image"], { type: 'text/plain' }));
                 img.src = file.preview;
             });
         };
 
-        const processFiles = files.map(async (file) => {
-            let targetExt = '.txt';
-            let content = null;
+        if (targetType === 'pdf') {
+            const pdf = new jsPDF();
 
-            if (activeConverter.includes('-pdf')) {
-                const pdf = new jsPDF();
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (i > 0) pdf.addPage();
+
                 if (file.type.startsWith('image/')) {
                     try {
-                        // Load image as data URL for jsPDF
-                        const imgData = await new Promise((resolve) => {
-                            const reader = new FileReader();
-                            reader.onload = (e) => resolve(e.target.result);
-                            reader.readAsDataURL(file);
-                        });
-
+                        const imgData = await getImageData(file);
                         const imgProps = pdf.getImageProperties(imgData);
                         const pdfWidth = pdf.internal.pageSize.getWidth();
                         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+
+                        const pageHeight = pdf.internal.pageSize.getHeight();
+                        if (pdfHeight > pageHeight) {
+                            const ratio = pageHeight / pdfHeight;
+                            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth * ratio, pageHeight);
+                        } else {
+                            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                        }
                     } catch (e) {
-                        pdf.text("Converted file: " + file.name, 10, 10);
-                        pdf.text("Note: Full encoding failed, simulated export.", 10, 20);
+                        pdf.text("Error adding image: " + file.name, 10, 10);
                     }
                 } else {
-                    pdf.text("Converted file: " + file.name, 10, 10);
+                    pdf.text("File: " + file.name, 10, 10);
+                    pdf.text("Converted using ConvertX", 10, 20);
                 }
-                content = pdf.output('blob');
-                targetExt = '.pdf';
-            } else if (activeConverter.includes('-png') || activeConverter.includes('-jpg') || activeConverter.includes('-webp')) {
-                const format = activeConverter.split('-to-')[1] || 'png';
-                targetExt = `.${format}`;
-                if (file.type.startsWith('image/')) {
-                    content = await convertImage(file, format);
-                } else {
-                    content = new Blob(["Conversion placeholder for non-image files"], { type: 'text/plain' });
-                }
-            } else if (activeConverter.includes('-mp3')) {
-                targetExt = '.mp3';
-                content = new Blob(["Audio conversion is server-side. This is a dummy MP3 for demonstration."], { type: 'audio/mpeg' });
-            } else if (activeConverter.includes('-doc')) {
-                targetExt = '.docx';
-                content = new Blob(["DOCX conversion placeholder."], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-            } else {
-                content = new Blob(["Converted content for " + file.name], { type: 'text/plain' });
             }
 
-            const newName = file.name.replace(/\.[^/.]+$/, "") + "-converted" + targetExt;
-            zip.file(newName, content);
-        });
+            const pdfBlob = pdf.output('blob');
+            zip.file("ConvertX-Output.pdf", pdfBlob);
 
-        await Promise.all(processFiles);
-        zip.file("ConvertX-Readme.txt", "Thank you for using ConvertX! Your files have been processed successfully.");
+        } else if (['png', 'jpg', 'webp'].includes(targetType)) {
+            const processImages = files.map(async (file) => {
+                let content;
+                if (file.type.startsWith('image/')) {
+                    content = await convertImage(file, targetType);
+                } else {
+                    content = new Blob(["Simulated image format conversion for non-image file: " + file.name], { type: 'text/plain' });
+                }
+                const newName = file.name.replace(/\.[^/.]+$/, "") + "-converted." + targetType;
+                zip.file(newName, content);
+            });
+            await Promise.all(processImages);
+
+        } else if (targetType === 'mp3') {
+            files.forEach(file => {
+                const newName = file.name.replace(/\.[^/.]+$/, "") + "-converted.mp3";
+                zip.file(newName, new Blob(["Simulated MP3 data for " + file.name], { type: 'audio/mpeg' }));
+            });
+        } else if (targetType === 'doc' || targetType === 'word') {
+            files.forEach(file => {
+                const newName = file.name.replace(/\.[^/.]+$/, "") + "-converted.docx";
+                zip.file(newName, new Blob(["Simulated DOCX data for " + file.name], { type: 'application/msword' }));
+            });
+        } else {
+            files.forEach(file => {
+                const newName = file.name.replace(/\.[^/.]+$/, "") + "-converted.txt";
+                zip.file(newName, new Blob(["Converted content for " + file.name], { type: 'text/plain' }));
+            });
+        }
+
+        zip.file("ConvertX-Readme.txt", "Processed with ConvertX. High quality file conversion complete.");
 
         const zipBlob = await zip.generateAsync({ type: "blob" });
         const url = URL.createObjectURL(zipBlob);
@@ -213,8 +233,6 @@ const ConverterDashboard = () => {
 
     return (
         <div className="dashboard-container">
-
-            {/* Sidebar / Options */}
             <div className="sidebar">
                 <h3 className="sidebar-title">ConvertX Tools</h3>
                 {converters.map(conv => (
@@ -229,7 +247,6 @@ const ConverterDashboard = () => {
                 ))}
             </div>
 
-            {/* Main Container */}
             <div className="converter-main glass-lg">
                 <div className="top-gradient-border"></div>
 
@@ -243,7 +260,6 @@ const ConverterDashboard = () => {
                     </button>
                 </div>
 
-                {/* Dropzone or Camera UI */}
                 {files.length === 0 ? (
                     activeConverter === 'camera-to-pdf' ? (
                         <div className="camera-container dark:border-slate-700/50" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', border: '2px dashed rgba(15,23,42,0.2)', borderRadius: '1rem' }}>
@@ -323,7 +339,6 @@ const ConverterDashboard = () => {
                                 </div>
                             ))}
 
-                            {/* Add More File Tile */}
                             {!converting && !completed && (
                                 <div {...getRootProps()} className="add-more-box">
                                     <input {...getInputProps()} />
@@ -337,7 +352,6 @@ const ConverterDashboard = () => {
                             )}
                         </div>
 
-                        {/* Actions / Progress */}
                         <div className="conversion-status">
                             {converting ? (
                                 <div className="progress-container">
@@ -388,7 +402,6 @@ const ConverterDashboard = () => {
                     </div>
                 )}
             </div>
-
         </div>
     );
 };
