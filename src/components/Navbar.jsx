@@ -50,7 +50,7 @@ const Navbar = () => {
                     <div className="desktop-links">
                         <a href="/" className="nav-link">Home</a>
                         <a href="/#converter" className="nav-link">Converter</a>
-                        <a href="/#features" className="nav-link">Features</a>
+                        <a href="/formats" className="nav-link">Formats</a>
                         <a href="/support" className="nav-link">Support</a>
                     </div>
 
@@ -86,7 +86,7 @@ const Navbar = () => {
                 <div className="mobile-menu glass">
                     <a href="/" className="mobile-nav-link">Home</a>
                     <a href="/#converter" className="mobile-nav-link">Converter</a>
-                    <a href="/#features" className="mobile-nav-link">Features</a>
+                    <a href="/formats" className="mobile-nav-link">Formats</a>
                     <a href="/support" className="mobile-nav-link">Support</a>
                     <div style={{ paddingTop: '1rem' }}>
                         <a href="/login" className="mobile-nav-link" style={{ textAlign: 'center', marginBottom: '0.5rem', fontWeight: 600 }}>

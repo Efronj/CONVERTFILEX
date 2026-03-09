@@ -58,32 +58,6 @@ const Home = () => {
                     </div>
                 </div>
 
-                {/* Supported Formats Section */}
-                <div style={{ width: '100%', marginTop: '4rem', padding: '4rem 0', borderTop: '1px solid var(--border)' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                        <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }} className="gradient-text">Supported File Formats</h2>
-                        <p style={{ color: 'rgba(15, 23, 42, 0.6)' }} className="dark:text-slate-300">Convert almost anything with our versatile toolset.</p>
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
-                        <div style={{ padding: '1rem', background: 'var(--glass-bg)', borderRadius: '1rem', border: '1px solid var(--border)', textAlign: 'center' }}>
-                            <strong style={{ display: 'block', marginBottom: '0.5rem' }}>📄 Documents</strong>
-                            <span style={{ fontSize: '0.875rem', opacity: 0.7 }}>PDF, DOCX, TXT, RTF</span>
-                        </div>
-                        <div style={{ padding: '1rem', background: 'var(--glass-bg)', borderRadius: '1rem', border: '1px solid var(--border)', textAlign: 'center' }}>
-                            <strong style={{ display: 'block', marginBottom: '0.5rem' }}>🖼️ Images</strong>
-                            <span style={{ fontSize: '0.875rem', opacity: 0.7 }}>JPG, PNG, WEBP, SVG</span>
-                        </div>
-                        <div style={{ padding: '1rem', background: 'var(--glass-bg)', borderRadius: '1rem', border: '1px solid var(--border)', textAlign: 'center' }}>
-                            <strong style={{ display: 'block', marginBottom: '0.5rem' }}>🎬 Video & Audio</strong>
-                            <span style={{ fontSize: '0.875rem', opacity: 0.7 }}>MP4, MOV, MP3, WAV</span>
-                        </div>
-                        <div style={{ padding: '1rem', background: 'var(--glass-bg)', borderRadius: '1rem', border: '1px solid var(--border)', textAlign: 'center' }}>
-                            <strong style={{ display: 'block', marginBottom: '0.5rem' }}>📦 Archives</strong>
-                            <span style={{ fontSize: '0.875rem', opacity: 0.7 }}>ZIP, RAR, 7Z</span>
-                        </div>
-                    </div>
-                </div>
-
                 {/* FAQ Section */}
                 <div style={{ width: '100%', maxWidth: '800px', margin: '4rem auto 8rem', padding: '0 1rem' }}>
                     <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '2.5rem', textAlign: 'center' }} className="gradient-text">Frequently Asked Questions</h2>
