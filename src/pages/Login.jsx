@@ -42,7 +42,7 @@ const Login = () => {
                 }}>
                     <FileText size={24} />
                 </div>
-                <span style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.025em' }} className="gradient-text-subtle">
+                <span style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.025em' }}>
                     ConvertX
                 </span>
             </Link>
@@ -62,7 +62,7 @@ const Login = () => {
                     <h2 style={{ fontSize: '2.25rem', fontWeight: 800, marginBottom: '0.75rem', letterSpacing: '-0.025em' }}>
                         {isLogin ? 'Hello Again' : 'Get Started'}
                     </h2>
-                    <p style={{ color: 'rgba(15, 23, 42, 0.6)', fontSize: '1rem' }} className="dark:text-slate-400">
+                    <p style={{ color: 'rgba(15, 23, 42, 0.6)', fontSize: '1rem' }}>
                         {isLogin ? 'Welcome back! Please enter your details.' : 'Join ConvertX and experience faster conversions.'}
                     </p>
                 </div>
@@ -168,7 +168,7 @@ const Login = () => {
                 </form>
 
                 <div style={{ marginTop: '2.5rem', textAlign: 'center', fontSize: '0.925rem' }}>
-                    <span style={{ color: 'rgba(15, 23, 42, 0.6)' }} className="dark:text-slate-400">
+                    <span style={{ color: 'rgba(15, 23, 42, 0.6)' }}>
                         {isLogin ? "Don't have an account? " : "Already have an account? "}
                     </span>
                     <button

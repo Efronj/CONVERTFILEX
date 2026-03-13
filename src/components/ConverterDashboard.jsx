@@ -311,7 +311,7 @@ const ConverterDashboard = () => {
 
                 {files.length === 0 ? (
                     activeConverter === 'camera-to-pdf' ? (
-                        <div className="camera-container dark:border-slate-700/50" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', border: '2px dashed rgba(15,23,42,0.2)', borderRadius: '1rem' }}>
+                        <div className="camera-container" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', border: '2px dashed rgba(15,23,42,0.2)', borderRadius: '1rem' }}>
                             {isCameraActive ? (
                                 <div style={{ position: 'relative', width: '100%', maxWidth: '32rem', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)', backgroundColor: 'black' }}>
                                     <video ref={videoRef} autoPlay playsInline style={{ width: '100%', display: 'block' }}></video>
@@ -381,7 +381,7 @@ const ConverterDashboard = () => {
                                         </button>
                                     )}
                                     {completed && (
-                                        <div style={{ position: 'absolute', top: '-0.5rem', right: '-0.5rem', background: 'white', borderRadius: '50%', color: '#22c55e', padding: '0.1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} className="dark:bg-slate-900">
+                                        <div style={{ position: 'absolute', top: '-0.5rem', right: '-0.5rem', background: 'white', borderRadius: '50%', color: '#22c55e', padding: '0.1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
                                             <CheckCircle2 size={20} />
                                         </div>
                                     )}
@@ -394,7 +394,7 @@ const ConverterDashboard = () => {
                                     <div className="add-more-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                     </div>
-                                    <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'rgba(15,23,42,0.6)' }} className="dark:text-slate-300">
+                                    <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'rgba(15,23,42,0.6)' }}>
                                         Add More
                                     </span>
                                 </div>

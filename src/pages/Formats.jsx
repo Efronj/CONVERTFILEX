@@ -10,7 +10,7 @@ const Formats = () => {
             <main className="main-content" style={{ padding: '4rem 1rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <h1 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1.5rem' }} className="gradient-text">Supported File Formats</h1>
-                    <p style={{ color: 'rgba(15, 23, 42, 0.6)', maxWidth: '40rem', margin: '0 auto', fontSize: '1.25rem' }} className="dark:text-slate-300">
+                    <p style={{ color: 'rgba(15, 23, 42, 0.6)', maxWidth: '40rem', margin: '0 auto', fontSize: '1.25rem' }}>
                         ConvertX supports a wide range of file formats for all your document, image, and media needs.
                         No software installation required—all conversions happen in your browser or on our secure servers.
                     </p>
@@ -22,7 +22,7 @@ const Formats = () => {
                         <div className="glass-lg" style={{ padding: '2.5rem', borderRadius: '1.5rem' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>📄</div>
                             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Documents</h2>
-                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }} className="dark:text-slate-400">High-fidelity conversions for all your professional documents.</p>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }}>High-fidelity conversions for all your professional documents.</p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {['PDF', 'DOCX', 'DOC', 'TXT', 'RTF', 'ODT', 'XLSX', 'PPTX'].map(fmt => (
                                     <span key={fmt} style={{ padding: '0.25rem 0.75rem', background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary-600)', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 600 }}>{fmt}</span>
@@ -34,7 +34,7 @@ const Formats = () => {
                         <div className="glass-lg" style={{ padding: '2.5rem', borderRadius: '1.5rem' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>🖼️</div>
                             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Images</h2>
-                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }} className="dark:text-slate-400">Fast processing for web and print image formats.</p>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }}>Fast processing for web and print image formats.</p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {['JPG', 'PNG', 'WEBP', 'SVG', 'GIF', 'ICO', 'BMP', 'TIFF'].map(fmt => (
                                     <span key={fmt} style={{ padding: '0.25rem 0.75rem', background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary-600)', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 600 }}>{fmt}</span>
@@ -46,7 +46,7 @@ const Formats = () => {
                         <div className="glass-lg" style={{ padding: '2.5rem', borderRadius: '1.5rem' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>🎬</div>
                             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Video</h2>
-                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }} className="dark:text-slate-400">Compress and convert video files for any device.</p>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }}>Compress and convert video files for any device.</p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {['MP4', 'MOV', 'AVI', 'MKV', 'WEBM', 'FLV', 'WMV'].map(fmt => (
                                     <span key={fmt} style={{ padding: '0.25rem 0.75rem', background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary-600)', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 600 }}>{fmt}</span>
@@ -58,7 +58,7 @@ const Formats = () => {
                         <div className="glass-lg" style={{ padding: '2.5rem', borderRadius: '1.5rem' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>🎵</div>
                             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Audio</h2>
-                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }} className="dark:text-slate-400">Crystal clear audio conversions for your music library.</p>
+                            <p style={{ color: 'rgba(15, 23, 42, 0.65)', marginBottom: '1.5rem' }}>Crystal clear audio conversions for your music library.</p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                 {['MP3', 'WAV', 'FLAC', 'AAC', 'OGG', 'M4A', 'WMA'].map(fmt => (
                                     <span key={fmt} style={{ padding: '0.25rem 0.75rem', background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary-600)', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 600 }}>{fmt}</span>

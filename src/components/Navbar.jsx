@@ -1,31 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Menu, X, FileText } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, FileText } from 'lucide-react';
 
 const Navbar = () => {
-    const [theme, setTheme] = useState(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) return savedTheme;
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    });
-    const [mounted, setMounted] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [theme]);
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    };
-
-    if (!mounted) return null;
 
     return (
         <nav style={{ position: 'sticky', top: 0, zIndex: 50, width: '100%' }} className="glass">
@@ -56,9 +33,6 @@ const Navbar = () => {
 
                     {/* Actions */}
                     <div className="desktop-links" style={{ gap: '1rem' }}>
-                        <button onClick={toggleTheme} className="icon-btn" aria-label="Toggle Dark Mode">
-                            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                        </button>
                         <a href="/login" className="nav-link" style={{ padding: '0.5rem', fontWeight: 600 }}>
                             Log in
                         </a>
@@ -70,9 +44,6 @@ const Navbar = () => {
                     {/* Mobile menu button */}
                     <div className="flex items-center gap-2 md-hidden-block" >
                         <div style={{ display: 'flex' }}>
-                            <button onClick={toggleTheme} className="icon-btn">
-                                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                            </button>
                             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="icon-btn" style={{ marginLeft: '0.5rem' }}>
                                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                             </button>
