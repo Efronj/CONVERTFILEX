@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { UploadCloud, FileImage, FileText, CheckCircle2, ArrowRightLeft, XCircle, Settings, Download, Camera, Music } from 'lucide-react';
+import { UploadCloud, FileImage, FileText, CheckCircle2, ArrowRightLeft, XCircle, Settings, Download, Camera, Music, ChevronDown } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
 import JSZip from 'jszip';
 import { jsPDF } from 'jspdf';
@@ -284,16 +284,36 @@ const ConverterDashboard = () => {
         <div className="dashboard-container">
             <div className="sidebar">
                 <h3 className="sidebar-title">ConvertX Tools</h3>
-                {converters.map(conv => (
-                    <button
-                        key={conv.id}
-                        onClick={() => setActiveConverter(conv.id)}
-                        className={`tool-btn ${activeConverter === conv.id ? 'active' : ''}`}
+                
+                {/* Mobile Dropdown */}
+                <div className="mobile-tool-select-wrapper md-hidden-block">
+                    <select 
+                        value={activeConverter} 
+                        onChange={(e) => setActiveConverter(e.target.value)}
+                        className="mobile-tool-select glass"
                     >
-                        {conv.icon}
-                        {conv.title}
-                    </button>
-                ))}
+                        {converters.map(conv => (
+                            <option key={conv.id} value={conv.id}>
+                                {conv.title}
+                            </option>
+                        ))}
+                    </select>
+                    <ChevronDown className="select-icon" size={20} />
+                </div>
+
+                {/* Desktop Sidebar */}
+                <div className="desktop-tool-list hide-on-mobile">
+                    {converters.map(conv => (
+                        <button
+                            key={conv.id}
+                            onClick={() => setActiveConverter(conv.id)}
+                            className={`tool-btn ${activeConverter === conv.id ? 'active' : ''}`}
+                        >
+                            {conv.icon}
+                            {conv.title}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             <div className="converter-main glass-lg">
