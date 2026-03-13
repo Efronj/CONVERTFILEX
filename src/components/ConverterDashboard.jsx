@@ -30,6 +30,7 @@ const ConverterDashboard = () => {
     const [converting, setConverting] = useState(false);
     const [progress, setProgress] = useState(0);
     const [completed, setCompleted] = useState(false);
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
     // Camera State
     const [isCameraActive, setIsCameraActive] = useState(false);
@@ -324,9 +325,49 @@ const ConverterDashboard = () => {
                         <ArrowRightLeft color="var(--primary-500)" />
                         {converters.find(c => c.id === activeConverter)?.title}
                     </h2>
-                    <button className="icon-btn" style={{ padding: '0.5rem' }}>
-                        <Settings size={20} />
-                    </button>
+                    <div style={{ position: 'relative' }}>
+                        <button 
+                            className="icon-btn" 
+                            style={{ padding: '0.5rem', background: isSettingsOpen ? 'rgba(15,23,42,0.05)' : 'transparent' }}
+                            onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                        >
+                            <Settings size={20} />
+                        </button>
+                        
+                        {isSettingsOpen && (
+                            <div className="glass" style={{ position: 'absolute', right: 0, top: '100%', marginTop: '0.5rem', borderRadius: '1rem', padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', zIndex: 50, minWidth: '14rem', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)' }}>
+                                <div style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.5rem 0.5rem 0.25rem', color: 'rgba(15,23,42,0.5)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Change Output Format</div>
+                                <div style={{ maxHeight: '16rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.25rem', paddingRight: '0.25rem' }}>
+                                    {converters.map(conv => (
+                                        <button 
+                                            key={conv.id} 
+                                            onClick={() => { setActiveConverter(conv.id); setIsSettingsOpen(false); }}
+                                            style={{ 
+                                                display: 'flex', 
+                                                alignItems: 'center', 
+                                                gap: '0.5rem',
+                                                textAlign: 'left', 
+                                                padding: '0.5rem', 
+                                                borderRadius: '0.5rem', 
+                                                background: activeConverter === conv.id ? 'var(--primary-50)' : 'transparent', 
+                                                color: activeConverter === conv.id ? 'var(--primary-600)' : 'rgba(15,23,42,0.8)', 
+                                                fontSize: '0.875rem', 
+                                                fontWeight: activeConverter === conv.id ? 600 : 500,
+                                                cursor: 'pointer',
+                                                border: 'none',
+                                                transition: 'background-color 0.2s'
+                                            }}
+                                            onMouseEnter={(e) => { if (activeConverter !== conv.id) e.target.style.backgroundColor = 'rgba(15,23,42,0.05)'; }}
+                                            onMouseLeave={(e) => { if (activeConverter !== conv.id) e.target.style.backgroundColor = 'transparent'; }}
+                                        >
+                                            <span style={{ transform: 'scale(0.8)' }}>{conv.icon}</span>
+                                            {conv.title}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 {files.length === 0 ? (
