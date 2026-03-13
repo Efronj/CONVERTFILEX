@@ -571,9 +571,10 @@ button {
   font-size: 1rem;
   font-weight: 600;
   color: var(--foreground);
+  background-color: var(--primary-50);
   border-radius: 1rem;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--primary-200);
+  box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.1);
   cursor: pointer;
 }
 
@@ -588,7 +589,7 @@ button {
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: rgba(15, 23, 42, 0.6);
+  color: var(--primary-500);
 }
 
 
