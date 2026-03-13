@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Support from './pages/Support';
 import Formats from './pages/Formats';
+import ToolLandingPage from './pages/ToolLandingPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/support" element={<Support />} />
         <Route path="/formats" element={<Formats />} />
+        <Route path="/tools/:toolId" element={<ToolLandingPage />} />
       </Routes>
     </Router>
   );

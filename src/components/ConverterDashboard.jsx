@@ -6,8 +6,8 @@ import { jsPDF } from 'jspdf';
 
 import { converters } from '../data/converters';
 
-const ConverterDashboard = () => {
-    const [activeConverter, setActiveConverter] = useState(converters[0].id);
+const ConverterDashboard = ({ initialTool }) => {
+    const [activeConverter, setActiveConverter] = useState(initialTool || converters[0].id);
     const [files, setFiles] = useState([]);
     const [converting, setConverting] = useState(false);
     const [progress, setProgress] = useState(0);
